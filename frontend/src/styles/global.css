@@ -70,3 +70,29 @@ body { margin: 0; background: #f6f8fb; color: #1f2937; }
 .analysis-chart { display: flex; align-items: flex-end; gap: 8px; height: 160px; padding: 12px 0; }
 .analysis-bar { flex: 1; border-radius: 4px 4px 0 0; background: var(--brand); min-width: 24px; position: relative; transition: height 0.4s; }
 .analysis-bar span { position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); font-size: 10px; color: var(--muted); white-space: nowrap; }
+
+/* 术语更正面板与命中取材面板 */
+.correction-panel, .lookup-panel { margin-top: 18px; padding: 14px 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px; }
+.panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.panel-head h3 { font-size: 15px; margin: 0 0 4px; }
+.panel-head h4 { font-size: 14px; margin: 0 0 6px; }
+.panel-desc { color: var(--muted); font-size: 12px; margin: 0 0 10px; max-width: 760px; }
+.panel-form { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; margin-bottom: 10px; }
+.panel-field { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); }
+.panel-field input, .panel-field select { padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; min-width: 220px; }
+.panel-message { font-size: 13px; color: #0f7b3f; margin: 6px 0; }
+.select-col { width: 34px; text-align: center; }
+.batch-table { margin-top: 10px; }
+.muted { color: var(--muted); font-size: 12px; }
+.origin-list { margin: 0; padding-left: 16px; font-size: 12px; }
+.quote { color: #334155; }
+.opened-card { margin-top: 14px; padding: 12px; border: 1px dashed var(--border); border-radius: 8px; background: #fafbfc; }
+.hint { font-size: 12px; color: var(--muted); margin: 4px 0 10px; }
+.decision { margin-top: 12px; padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: #fff; }
+.decision-label { font-weight: 600; margin: 0 0 6px; }
+.decision-label.ok { color: #0f7b3f; }
+.decision-label.bad { color: #b42318; }
+.decision-reason { font-size: 13px; margin: 0 0 8px; }
+.adopted { display: grid; grid-template-columns: 120px 1fr; gap: 6px 12px; margin: 0; }
+.adopted dt { color: var(--muted); font-size: 12px; }
+.adopted dd { margin: 0; font-size: 13px; }

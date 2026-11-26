@@ -18,6 +18,12 @@ export type ModuleMeta = {
   actions: string[]
   actionTargets: Record<string, string>
   metrics: string[]
+  /** 术语更正链路：术语抽取页开批量更正/撤回，媒体索引页开命中检索与取材。 */
+  versionField?: string
+  /** 版本记录编号字段；批量更正必须限定在同一版本记录（同一转写版本的不同任务不能混批）。 */
+  versionIdField?: string
+  supportsBatchCorrection?: boolean
+  supportsHitLookup?: boolean
 }
 
 export type PageResult = {

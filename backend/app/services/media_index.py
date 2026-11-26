@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from app.pipeline.index_hit_merger import IndexHitMerger
 from app.services.base import BaseModuleService
 from app.store import store
 
@@ -16,6 +17,9 @@ class MediaIndexService(BaseModuleService):
     STATUS_ORDER = ["构建中", "已就绪", "已过期", "构建失败"]
     ACTION_RULES = {"启动构建": "构建中", "标记就绪": "已就绪", "登记失败": "构建失败"}
     NEGATIVE_ACTIONS = []
+
+    def __init__(self) -> None:
+        self.merger = IndexHitMerger()
 
     def build_index(
         self, index_id: str, media_id: str, term: str,
@@ -61,3 +65,23 @@ class MediaIndexService(BaseModuleService):
                 r["abnormal"] = True
                 count += 1
         return count
+
+    def rebuild(self, version_no: str, media_id: str) -> list[dict[str, Any]]:
+        """按转写版本与原段重建某媒体的命中，保留可核对的引文出处。"""
+        return self.merger.rebuild_index(version_no, media_id)
+
+    def merge_hits(self, version_no: str, media_id: str | None = None) -> list[dict[str, Any]]:
+        """归并命中：同一原段重复出现只算一处。"""
+        return self.merger.merge_hits(version_no, media_id)
+
+    def search(self, word: str, version_no: str) -> list[dict[str, Any]]:
+        """按词与转写版本检索命中出处。"""
+        return self.merger.search(word, version_no)
+
+    def resolve_citation(
+        self, word: str, version_no: str, media_id: str,
+        segment_id: str, position_ms: str = "",
+    ) -> dict[str, Any]:
+        """就检索人员已打开的试听位置给出取材结论。"""
+        return self.merger.resolve_citation(
+            word, version_no, media_id, segment_id, position_ms)
